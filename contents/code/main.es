@@ -41,7 +41,7 @@ function pageRetrieved( id, data ) {
         }
     }
     if ( id == comic.Page ) {
-        const expImage = new RegExp( "src=\"(http://www.explosm.net/db/files/[^\"]+)\"" );
+        const expImage = new RegExp( "src=\"(http://www.explosm.net/db/files/Comics/[^\"]+)\"" );
         const matchImage = expImage.exec( data );
         if ( matchImage != null ) {
             comic.requestPage( matchImage[1], comic.Image );
