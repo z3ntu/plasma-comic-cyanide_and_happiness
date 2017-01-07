@@ -6,11 +6,11 @@ X-KDE-ServiceTypes=Plasma/Comic
 Icon=icon.png
 
 X-KDE-Library=plasma_comic_krossprovider
-X-KDE-PluginInfo-Author=Matthias Fuchs
-X-KDE-PluginInfo-Email=mat69@gmx.net
+X-KDE-PluginInfo-Author=Luca Weiss
+X-KDE-PluginInfo-Email=luca@z3ntu.xyz
 X-KDE-PluginInfo-Name=cyanide_and_happiness
-X-KDE-PluginInfo-Version=0.1
-X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Version=0.3
+X-KDE-PluginInfo-Website=https://z3ntu.xyz
 X-KDE-PluginInfo-License=GPLv2
 X-KDE-PluginInfo-EnabledByDefault=true
 X-KDE-PlasmaComicProvider-SuffixType=Number
