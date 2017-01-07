@@ -18,69 +18,68 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  ***************************************************************************/
 
-function init()
-{
+function init() {
     comic.shopUrl = "http://store.explosm.net/";
     comic.isAuthorPerStrip = true;
     comic.firstIdentifier = 15;
 
     var url = "http://explosm.net/comics/latest";
 
-    comic.requestPage( url, comic.User );
+    comic.requestPage(url, comic.User);
 }
 
-function pageRetrieved( id, data ) {
+function pageRetrieved(id, data) {
     // comic.Page: 0
     // comic.Image: 1
     // comic.User: 2
     print(id);
 
     //find lastIdentifier
-    if ( id == comic.User ) {
-        const expLast = new RegExp( "value=\"http://explosm.net/comics/(\\d+)/\"" );
-        const matchLast = expLast.exec( data );
-        if ( matchLast != null ) {
+    if (id == comic.User) {
+        const expLast = new RegExp("value=\"http://explosm.net/comics/(\\d+)/\"");
+        const matchLast = expLast.exec(data);
+        if (matchLast != null) {
             comic.lastIdentifier = matchLast[1];
             comic.websiteUrl = "http://www.explosm.net/comics/" + comic.identifier + "/";
 
-            comic.requestPage( comic.websiteUrl, comic.Page );
+            comic.requestPage(comic.websiteUrl, comic.Page);
         } else {
             print("Failed to parse comic.lastIdentifier.");
             comic.error();
         }
     }
-    if ( id == comic.Page ) {
-        const expImage = new RegExp( "src=\"(//files.explosm.net/comics/[^\"]+)\"" );
-        const matchImage = expImage.exec( data );
-        if ( matchImage != null ) {
+    if (id == comic.Page) {
+        const expImage = new RegExp("src=\"(//files.explosm.net/comics/[^\"]+)\"");
+        const matchImage = expImage.exec(data);
+        if (matchImage != null) {
             const imageUrl = "http:" + matchImage[1];
             print(imageUrl);
-            comic.requestPage( imageUrl, comic.Image );
+            comic.requestPage(imageUrl, comic.Image);
         } else {
             print("Failed to parse image url.");
             comic.error();
         }
 
-        const expAuthor = new RegExp( "author-credit-name\">by ([^<]+)+</small>" );
-        const matchAuthor = expAuthor.exec( data );
-        if ( matchAuthor != null ) {
+        const expAuthor = new RegExp("author-credit-name\">by ([^<]+)+</small>");
+        const matchAuthor = expAuthor.exec(data);
+        if (matchAuthor != null) {
             comic.comicAuthor = matchAuthor[1];
         } else {
             print("Failed to parse the author.");
         }
 
-        const expPrev = new RegExp( "<a href=\"/comics/(\\d+)/\" class=\"previous-comic" );
-        const matchPrev = expPrev.exec( data );
-        if ( matchPrev != null ) {
+        const expPrev = new RegExp("<a href=\"/comics/(\\d+)/\" class=\"previous-comic");
+        const matchPrev = expPrev.exec(data);
+        if (matchPrev != null) {
             print("Previous identifier: " + matchPrev[1]);
             comic.previousIdentifier = matchPrev[1];
         } else {
             print("Failed to parse previous identifier.");
         }
 
-        const expNext = new RegExp( "<a href=\"/comics/(\\d+)/\" class=\"next-comic" );
-        const matchNext = expNext.exec( data );
-        if ( matchNext != null ) {
+        const expNext = new RegExp("<a href=\"/comics/(\\d+)/\" class=\"next-comic");
+        const matchNext = expNext.exec(data);
+        if (matchNext != null) {
             print("Next identifier: " + matchNext[1]);
             comic.nextIdentifier = matchNext[1];
         } else {
