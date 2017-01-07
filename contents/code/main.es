@@ -18,6 +18,11 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  ***************************************************************************/
 
+// You can debug the code with "plasmoidviewer -a org.kde.plasma.comic"
+// Package: zip -r cyanide_and_happiness.comic contents/code/main.es metadata.desktop icon.png
+// Install: kpackagetool5 -i cyanide_and_happiness.comic
+// Uninstall: kpackagetool5 -r cyanide_and_happiness
+
 function init() {
     comic.shopUrl = "http://store.explosm.net/";
     comic.isAuthorPerStrip = true;
