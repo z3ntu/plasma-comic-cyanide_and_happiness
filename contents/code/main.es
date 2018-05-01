@@ -37,7 +37,7 @@ function pageRetrieved(id, data) {
     // comic.Page: 0
     // comic.Image: 1
     // comic.User: 2
-    print(id);
+    print("pageRetrieved - id: " + id);
 
     //find lastIdentifier
     if (id == comic.User) {
@@ -66,15 +66,16 @@ function pageRetrieved(id, data) {
             comic.error();
         }
 
-        const expAuthor = new RegExp("author-credit-name\">by ([^<]+)+</small>");
+        const expAuthor = new RegExp('<div id="comic-author">\n(\\d{4}.\\d{2}.\\d{2})<br \/>\nby (.*)\n<\/div>');
         const matchAuthor = expAuthor.exec(data);
         if (matchAuthor != null) {
-            comic.comicAuthor = matchAuthor[1];
+            comic.title = matchAuthor[1];
+            comic.comicAuthor = matchAuthor[2];
         } else {
-            print("Failed to parse the author.");
+            print("Failed to parse the author / title.");
         }
 
-        const expPrev = new RegExp("<a href=\"/comics/(\\d+)/\" class=\"previous-comic");
+        const expPrev = new RegExp('<a href="/comics/(\\d+)/" class="nav-previous');
         const matchPrev = expPrev.exec(data);
         if (matchPrev != null) {
             print("Previous identifier: " + matchPrev[1]);
@@ -83,7 +84,7 @@ function pageRetrieved(id, data) {
             print("Failed to parse previous identifier.");
         }
 
-        const expNext = new RegExp("<a href=\"/comics/(\\d+)/\" class=\"next-comic");
+        const expNext = new RegExp('<a href="/comics/(\\d+)/" class="nav-next');
         const matchNext = expNext.exec(data);
         if (matchNext != null) {
             print("Next identifier: " + matchNext[1]);
