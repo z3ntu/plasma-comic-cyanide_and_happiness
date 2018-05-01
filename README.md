@@ -1,6 +1,6 @@
 # Plasma Comic - Cyanide and Happiness
 
-Based on https://store.kde.org/p/1080330/, updated and working as of 2017-01-07.
+Based on https://store.kde.org/p/1080330/, updated and working as of 2018-05-01.
 
 ## Installation
 
