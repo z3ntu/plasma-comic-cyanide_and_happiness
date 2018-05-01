@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008 Matthias Fuchs <mat69@gmx.net>                     *
- *   Copyright (C) 2017 Luca Weiss <luca@z3ntu.xyz>                        *
+ *   Copyright (C) 2017-2018 Luca Weiss <luca@z3ntu.xyz>                   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -41,7 +41,8 @@ function pageRetrieved(id, data) {
 
     //find lastIdentifier
     if (id == comic.User) {
-        const expLast = new RegExp("value=\"http://explosm.net/comics/(\\d+)/\"");
+        // Get comic ID from the <meta property="og:url" ... >
+        const expLast = new RegExp('property="og:url" content="http://explosm.net/comics/(\\d+)/"');
         const matchLast = expLast.exec(data);
         if (matchLast != null) {
             comic.lastIdentifier = matchLast[1];
