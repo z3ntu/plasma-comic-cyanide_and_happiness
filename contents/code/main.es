@@ -21,14 +21,14 @@
 // You can debug the code with "plasmoidviewer -a org.kde.plasma.comic"
 // Package: zip -r cyanide_and_happiness.comic contents/code/main.es metadata.desktop icon.png
 // Install: kpackagetool5 -i cyanide_and_happiness.comic
-// Uninstall: kpackagetool5 -r cyanide_and_happiness
+// Uninstall: kpackagetool5 -r cyanide_and_happiness -t Plasma/Comic
 
 function init() {
-    comic.shopUrl = "http://store.explosm.net/";
+    comic.shopUrl = "https://store.explosm.net/";
     comic.isAuthorPerStrip = true;
     comic.firstIdentifier = 15;
 
-    var url = "http://explosm.net/comics/latest";
+    var url = "https://explosm.net/comics/latest";
 
     comic.requestPage(url, comic.User);
 }
@@ -42,11 +42,11 @@ function pageRetrieved(id, data) {
     //find lastIdentifier
     if (id == comic.User) {
         // Get comic ID from the <meta property="og:url" ... >
-        const expLast = new RegExp('property="og:url" content="http://explosm.net/comics/(\\d+)/"');
+        const expLast = new RegExp('property="og:url" content="https://explosm.net/comics/(\\d+)/"');
         const matchLast = expLast.exec(data);
         if (matchLast != null) {
             comic.lastIdentifier = matchLast[1];
-            comic.websiteUrl = "http://www.explosm.net/comics/" + comic.identifier + "/";
+            comic.websiteUrl = "https://www.explosm.net/comics/" + comic.identifier + "/";
 
             comic.requestPage(comic.websiteUrl, comic.Page);
         } else {
